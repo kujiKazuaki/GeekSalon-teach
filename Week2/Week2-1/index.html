@@ -5,12 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>自販機</title>
+    <style>
+      #disImg {
+        max-width: 300px;
+        max-height: 400px;
+        min-width: 300px;
+        min-height: 400px;
+      }
+    </style>
   </head>
   <body>
     <h1>自販機</h1>
     <section>
-      <h3>自販機にお金を入れる</h3>
+      <h3>自販機にお金を入れ</h3>
+      <input type="number" id="moneyInput" value="0" />
+      <button id="moneyInputBtn">金額決定</button> <br />
       <button id="add-button-100">100円入れる</button>
+      <button id="changeBtn">おつり</button>
       <h4>↓財布↓</h4>
       <div id="display-saifu">1000</div>
       <h4>↓投入金額↓</h4>
@@ -18,38 +29,120 @@
     </section>
     <section>
       <h3>商品を買う</h3>
-      <button id="buy-button-tea">お茶(100円)</button>
+      <button id="buy-button-tea" disabled>お茶(100円)</button>
+      <button id="beerBtn" disabled>お酒(150円)</button><br />
+      <button id="teaImg" disabled>お茶(100円)</button>
+      <button id="beerImg" disabled>お酒(150円)</button>
     </section>
     <section>
       <h3>買った商品</h3>
       <div id="display-items"></div>
+      <div>
+        <img src="./images/drinks.webp" alt="image" id="disImg" />
+      </div>
     </section>
     <script>
       // HTML要素を取得する
+      const moneyInput = document.getElementById("moneyInput");
+      const moneyInputBtn = document.getElementById("moneyInputBtn");
       const buyButtonTea = document.getElementById("buy-button-tea");
       const displayItems = document.getElementById("display-items");
+      const disImg = document.getElementById("disImg");
       const saifu = document.getElementById("display-saifu");
       const jihankiMoney = document.getElementById("display-jihanki-money");
       const addBtn = document.getElementById("add-button-100");
+      const changeBtn = document.getElementById("changeBtn");
+      const beerBtn = document.getElementById("beerBtn");
+      const teaImg = document.getElementById("teaImg");
+      const beerImg = document.getElementById("beerImg");
 
       //   2-3-4. <button id="add-button-100">100円入れる</button> をクリックしたときに、saifu　から 100 引いて、jihankiMoney に 100 足すようにしてください。
       let jihankiValue = Number(jihankiMoney.textContent);
+      let saifuValue = Number(saifu.textContent);
+
+      moneyInputBtn.onclick = function () {
+        let moneyInputValue = Number(moneyInput.value);
+        if (moneyInputValue > 0) {
+          console.log("asdiufas");
+          saifuValue -= moneyInputValue;
+          saifu.textContent = saifuValue;
+          jihankiValue += moneyInputValue;
+          jihankiMoney.textContent = jihankiValue;
+        } else {
+          alert("0円以上のお金を入れて！");
+        }
+        jihankiFunc();
+      };
 
       addBtn.onclick = function () {
         // 「const」に追加で変数代入するとエラーが起こる
         if (saifu.textContent > 0) {
-          saifu.textContent -= 100;
+          saifuValue -= 100;
+          saifu.textContent = saifuValue;
           jihankiValue += 100;
           jihankiMoney.textContent = jihankiValue;
         }
+        jihankiFunc();
       };
 
       // buyButtonTea を押した時の処理
       buyButtonTea.onclick = function () {
-        if (jihankiValue > 0) {
+        if (jihankiValue >= 100) {
           displayItems.textContent += "🍵";
           jihankiValue -= 100;
           jihankiMoney.textContent = jihankiValue;
+        }
+        jihankiFunc();
+      };
+      //   画像お茶ボタンを押したときの処理
+      teaImg.onclick = function () {
+        if (jihankiValue >= 100) {
+          disImg.src = "./images/tea.jpeg";
+        }
+        jihankiFunc();
+      };
+      //   画像ビールボタンを押したときの処理
+      beerImg.onclick = function () {
+        if (jihankiValue >= 150) {
+          disImg.src = "./images/beer.jpeg";
+        }
+        jihankiFunc();
+      };
+      console.log(disImg);
+
+      //   ビールボタンの処理
+      beerBtn.onclick = function () {
+        if (jihankiValue >= 150) {
+          displayItems.textContent += "🍺";
+          jihankiValue -= 150;
+          jihankiMoney.textContent = jihankiValue;
+        }
+        jihankiFunc();
+      };
+
+      //   おつりボタンの処理
+      changeBtn.onclick = function () {
+        saifuValue += jihankiValue;
+        saifu.textContent = saifuValue;
+        jihankiValue = 0;
+        jihankiMoney.textContent = jihankiValue;
+        jihankiFunc();
+      };
+
+      const jihankiFunc = function () {
+        if (jihankiValue >= 100) {
+          buyButtonTea.disabled = false;
+          teaImg.disabled = false;
+        } else {
+          buyButtonTea.disabled = true;
+          teaImg.disabled = true;
+        }
+        if (jihankiValue >= 150) {
+          beerBtn.disabled = false;
+          beerImg.disabled = false;
+        } else {
+          beerBtn.disabled = true;
+          beerImg.disabled = true;
         }
       };
     </script>

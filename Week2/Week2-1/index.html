@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>自販機</title>
+  </head>
+  <body>
+    <h1>自販機</h1>
+    <section>
+      <h3>自販機にお金を入れる</h3>
+      <button id="add-button-100">100円入れる</button>
+      <h4>↓財布↓</h4>
+      <div id="display-saifu">1000</div>
+      <h4>↓投入金額↓</h4>
+      <div id="display-jihanki-money">0</div>
+    </section>
+    <section>
+      <h3>商品を買う</h3>
+      <button id="buy-button-tea">お茶(100円)</button>
+    </section>
+    <section>
+      <h3>買った商品</h3>
+      <div id="display-items"></div>
+    </section>
+    <script>
+      // HTML要素を取得する
+      const buyButtonTea = document.getElementById("buy-button-tea");
+      const displayItems = document.getElementById("display-items");
+      const saifu = document.getElementById("display-saifu");
+      const jihankiMoney = document.getElementById("display-jihanki-money");
+      const addBtn = document.getElementById("add-button-100");
+
+      //   2-3-4. <button id="add-button-100">100円入れる</button> をクリックしたときに、saifu　から 100 引いて、jihankiMoney に 100 足すようにしてください。
+      let jihankiValue = Number(jihankiMoney.textContent);
+
+      addBtn.onclick = function () {
+        // 「const」に追加で変数代入するとエラーが起こる
+        if (saifu.textContent > 0) {
+          saifu.textContent -= 100;
+          jihankiValue += 100;
+          jihankiMoney.textContent = jihankiValue;
+        }
+      };
+
+      // buyButtonTea を押した時の処理
+      buyButtonTea.onclick = function () {
+        if (jihankiValue > 0) {
+          displayItems.textContent += "🍵";
+          jihankiValue -= 100;
+          jihankiMoney.textContent = jihankiValue;
+        }
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      .fontBold {
+        font-weight: bold;
+      }
+      .colorRed {
+        color: red;
+      }
+      .all_Container {
+        text-align: left;
+      }
+      .tableContents {
+        text-align: left;
+        /* border: 2px solid black; */
+        /* margin: 0 auto; */
+      }
+      .themeLink {
+        margin: 0 auto;
+        list-style: none;
+        /* padding-left: 50px; */
+      }
+      .dataLink {
+        list-style: none;
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .tableContents h1 {
+        /* text-align: center; */
+      }
+      .tableContents li {
+        margin-left: 20px;
+        font-size: 20px;
+        font-weight: bold;
+      }
+      .sectionContainer {
+        /* border: 2px solid red; */
+        /* width: 800px; */
+        margin: 0 auto;
+        margin-top: 40px;
+      }
+      .dataContainer {
+        text-align: left;
+        padding-left: 50px;
+      }
+      .tableContainer {
+        margin: 0 auto;
+        border: 2px solid black;
+        font-size: 20px;
+      }
+      table tr th {
+        border: 2px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="all_Container">
+      <section class="tableContents">
+        <h1>テーマ：JavaScriptによく登場するデータ型</h1>
+        <h1>目次</h1>
+        <ul class="themeLink">
+          <li>１.値とは</li>
+          <li>２.データ型と種類</li>
+          <li>３.配列とオブジェクトの違い</li>
+          <li>４.おわり</li>
+        </ul>
+      </section>
+
+      <section class="sectionContainer">
+        <h1>１.値とは</h1>
+        <div class="dataContainer">
+          <p>意味：何らかの式を評価した結果</p>
+          <h3>例</h3>
+          <div>
+            <div>let count = 0</div>
+            <div>console.log("こんにちは")</div>
+            <div>if (30 % 3 === 0) {}</div>
+            <div>const func = function() {}</div>
+          </div>
+          <h3>イメージ：変数に代入するときの右側。if文のかっこの中</h3>
+        </div>
+      </section>
+
+      <section class="sectionContainer">
+        <h1>２.データ型と種類</h1>
+        <ul class="dataLink">
+          <li>数値</li>
+          <li>文字列</li>
+          <li>論理型(真偽値)</li>
+          <li>関数</li>
+          <li>undefined</li>
+          <li>配列</li>
+          <li>オブジェクト</li>
+        </ul>
+        <div>
+          <h2>数値</h2>
+          <div class="dataContainer">
+            <p>意味：「数字」に当たるもの</p>
+            <p>例： 1, 0.1,</p>
+            <p class="fontBold">書き方：半角数字で書く</p>
+          </div>
+        </div>
+        <div>
+          <h2>文字列</h2>
+          <div class="dataContainer">
+            <p>意味：「""」や「''」で囲ったもの</p>
+            <p>例：console.log("こんにちは") => こんにちは</p>
+            <p class="fontBold">書き方１：「""」や「''」で囲う</p>
+            <p>※「""」：ダブルクォーテーション</p>
+            <p>※「''」: シングルクォーテーション</p>
+            <p>※「""」で囲ったものは数字であっても文字列に変換される！</p>
+            <p class="fontBold">
+              書き方２：「``」で囲い、変数を使う場合は${ 変数 }とかく
+            </p>
+            <p>※「``」：バッククォーテーション</p>
+          </div>
+        </div>
+        <div>
+          <h2>論理型(真偽値)</h2>
+          <div class="dataContainer">
+            <p>意味：「true」「false」で審査されるもの</p>
+            <p>イメージ：「もし〇〇だったら」</p>
+            <p>例：if(真偽値)</p>
+            <p class="fontBold">書き方：値に「true」か「false」と書く</p>
+            <p>trueとfalseは比較演算子=== で間接的に使う</p>
+          </div>
+        </div>
+        <div>
+          <h2>関数</h2>
+          <div class="dataContainer">
+            <p>意味：文の集まりを１つの処理としてまとめる機能</p>
+            <p>　　　関数も値のひとつ！</p>
+            <p class="fontBold">
+              書き方１：function() { 関数が呼び出された時の処理 }
+            </p>
+            <p class="fontBold">
+              書き方２：function(引数) { 関数が呼び出された時の処理 }
+            </p>
+            <p>※変数定義した場合、「変数()」という書き方をする必要がある</p>
+            <p class="colorRed fontBold">メリット：なんども使える</p>
+            <p>※引数を設定した場合、「変数(引数)」という書き方ができる</p>
+            <p class="colorRed fontBold">
+              引数のメリット：引数を変えるだけで同じ処理をしてくれるのでコード書くの楽
+            </p>
+            <p class="fontBold">書き方３：「return(返り値)」を使う</p>
+            <p>
+              返り値：「戻り値」ともいう。関数内で処理した結果を「返り値」として返すことができる
+            </p>
+            <p class="colorRed fontBold">
+              メリット：返り値を使って再利用できる => if文の条件式,
+              別の関数の引数に入れ込む
+            </p>
+          </div>
+        </div>
+        <div>
+          <h2>undefined</h2>
+          <div class="dataContainer">
+            <p>意味：「定義されてない」という意味。</p>
+            <p>例：let 〇〇,=> 変数を宣言したが、一度も使われてない時</p>
+          </div>
+        </div>
+        <div>
+          <h2>配列</h2>
+          <div class="dataContainer">
+            <p>意味：値に番号をつけて１か所に格納できる型</p>
+            <p class="fontBold">書き方：[要素, 要素,]</p>
+            <p>要素 => 配列・文字列・オブジェクトなどの値が入る</p>
+            <p class="colorRed fontBold">
+              メリット：複数の文字列や数値などの値をまとめたいとき
+            </p>
+            <p>※呼び出すときは「変数名[インデックス番号]」という書き方をする</p>
+            <p style="color: red; font-weight: bold">
+              インデックス番号は絶対「0」から始まる!
+            </p>
+          </div>
+        </div>
+        <div>
+          <h2>オブジェクト</h2>
+          <div class="dataContainer">
+            <p>意味：値にラベルをつけて格納できる型</p>
+            <p class="fontBold">書き方：{ key: value, key: value, ...}</p>
+            <p>※keyに当たる部分は「文字列」か「数字」</p>
+            <p>※valueに当たる部分はどんな値を入れてもいい</p>
+            <p>※呼び出すときは「変数名.key」という書き方をする</p>
+            <p class="colorRed fontBold">
+              メリット：値を名前( キー ) と紐付けてまとめておける
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="sectionContainer">
+        <h1>３.配列とオブジェクトの違い</h1>
+        <div class="dataContainer">
+          <table class="tableContainer borderContainer">
+            <tr class="borderContainer">
+              <th></th>
+              <th>配列</th>
+              <th>オブジェクト</th>
+            </tr>
+            <tr>
+              <th>書き方</th>
+              <th>[要素, 要素,]</th>
+              <th>{ key: value,}</th>
+            </tr>
+            <tr>
+              <th>呼び出し方</th>
+              <th>変数名[インデックス番号]</th>
+              <th>変数名.key</th>
+            </tr>
+            <tr>
+              <th>特徴(区別化)</th>
+              <th>順番を意識しないといけない</th>
+              <th>順番を意識しなくていい</th>
+            </tr>
+          </table>
+        </div>
+      </section>
+
+      <section class="sectionContainer">
+        <h1>４.おわり</h1>
+        <div></div>
+        <div style="font-size: 20px; font-weight: bold">
+          データ型のワークを頑張ろう！
+        </div>
+      </section>
+
+      <script>
+        // 数値
+        console.log(1 + 0.3);
+
+        // 文字列
+        console.log("test");
+        console.log("1 + 0.3");
+        console.log("1" + "0.3");
+        const name = "くじ";
+        console.log(`私は${name}です`);
+        console.log("私は" + name + "です");
+
+        // 真偽値
+        console.log(true);
+        if (33 % 3 === 3) {
+          console.log(true + "です");
+        } else {
+          console.log(false + "です");
+        }
+
+        // 関数
+        const hello = function (name) {
+          console.log("こんにちは" + name + "です");
+        };
+        hello("くじ");
+        hello("くじっち");
+
+        const calc = function (x, y) {
+          return x + y;
+        };
+        // console.log(calc(1, 2));
+
+        const result = calc(1, 2);
+        if (result === 3) {
+          console.log("答えは３！");
+        }
+
+        // undefined
+        let nothing;
+        console.log(nothing);
+
+        // 配列
+        const array = ["こんにちは", "こんばんは", "おはよう"];
+        console.log(array);
+        console.log(array[0]);
+
+        // オブジェクト
+        const kuji = {
+          name: "くじっち",
+          age: 21,
+          hobby: ["ゲーム", "カラオケ", "プログラミング"],
+          prefecture: {
+            name: "岩手",
+            product: "わんこそば",
+          },
+          hello: function () {
+            console.log("おはよう！！");
+          },
+        };
+        console.log(kuji.hobby[0]);
+        kuji.hello();
+      </script>
+    </div>
+  </body>
+</html>

@@ -1,6 +1,7 @@
 const inputTxt = document.getElementById("inputTxt");
 const addMemoBtn = document.getElementById("addMemoBtn");
 const memo = document.getElementById("memo");
+const selectBtn = document.getElementById("selectBtn");
 
 addMemoBtn.onclick = function () {
   if (inputTxt.value !== "") {
@@ -15,6 +16,7 @@ addMemoBtn.onclick = function () {
 const memoFormat = function (text) {
   const memoContainer = document.createElement("div");
   memoContainer.className = "memoContainer";
+  memoContainer.id = "memoContainer";
 
   const checkBox = document.createElement("input");
   checkBox.setAttribute("type", "checkbox");

@@ -1,0 +1,41 @@
+.allContainer {
+  text-align: center;
+}
+.memoInput__Area input {
+  width: 70%;
+  height: 1.3em;
+}
+.btnFormat {
+  font-size: 1.1em;
+  font-weight: bold;
+  padding: 0 0.9rem;
+  background-color: azure;
+  border: 1px solid black;
+  border-radius: 5px;
+}
+.btnFormat:hover {
+  cursor: pointer;
+  filter: brightness(95%);
+}
+.btnFormat:active {
+  transform: scale(0.98);
+}
+.memoContainer {
+  border: 2px solid black;
+  display: flex;
+  align-items: center;
+  margin: 1rem;
+  padding: 0.7rem;
+  position: relative;
+}
+.checkboxInput {
+  margin-left: 0.9em;
+}
+.memoText {
+  font-weight: bold;
+  margin-left: 0.6em;
+}
+.deleteBtn {
+  position: absolute;
+  right: 1em;
+}

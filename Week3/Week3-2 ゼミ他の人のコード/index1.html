@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>配列を使ったメモアプリ</title>
+  </head>
+  <body>
+    <h2>配列を使ったメモアプリ</h2>
+    <input type="text" id="memo-input" />
+    <button id="add-button">保存</button>
+    <button id="change-button">並び替え</button>
+    <div id="memo-container"></div>
+    <script>
+      const memoInput = document.getElementById("memo-input");
+      const addButton = document.getElementById("add-button");
+      const memoContainer = document.getElementById("memo-container");
+      const changeButton = document.getElementById("change-button");
+      let memos = ["おはよう", "こんにちは", "こんばんは"]; ///保存した文字列を管理する配列
+
+      addButton.onclick = function () {
+        const text = memoInput.value;
+        memos.push(text);
+        console.log(memos);
+        memoContainer.textContent = "";
+        for (let i = 0; i < memos.length; i++) {
+          ///新しいdivタグを作る
+          const div = document.createElement("div");
+          div.textContent = memos[i];
+
+          memoContainer.append(div);
+        }
+        memoInput.value = "";
+        // 取得した内容をDOMに反映する　（配列を使わない前提の処理）
+        // const div = document.createElement("div");
+        // div.textContent = text;
+        // memoContainer.append(div);
+      };
+      changeButton.onclick = function () {
+        memos.sort();
+        console.log(memos);
+        memoContainer.textContent = "";
+
+        for (let i = 0; i < memos.length; i++) {
+          const div = document.createElement("div");
+          div.textContent = memos[i];
+
+          memoContainer.append(div);
+        }
+      };
+    </script>
+  </body>
+</html>

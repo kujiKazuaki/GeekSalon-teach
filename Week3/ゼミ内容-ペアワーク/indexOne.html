@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>配列</title>
+  </head>
+  <body>
+    <script>
+      // 配列
+      const array = [];
+      console.log(array);
+
+      // 添え字番号で引っ張ってこれる
+      const aisatsu = ["おはよう", "こんにちは", "こんばんは"];
+      console.log(aisatsu[0]);
+      console.log(aisatsu[1]);
+      console.log(aisatsu[2]);
+
+      // ふつうは、for分で回したりして処理したりして使う。
+      for (let i = 0; i < aisatsu.length; i++) {
+        console.log(aisatsu[i]); // => "おはよう", "こんにちは", "こんばんは"
+      }
+
+      // 配列の要素をJSで操作するには...? -> プロトタイプメソッドを使う。
+
+      // プロトタイプメソッドとは? -> 配列やオブジェクトや文字列が予めもってる関数
+
+      // 例えば、Stringは includes() というプロトタイプメソッドを持っている。
+      // https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/String/includes
+      console.log("A B C".includes("A")); // => true
+
+      // Array.prototype.push を使う
+      aisatsu.push("おやすみ");
+      console.log(aisatsu); // => ["おはよう", "こんにちは", "こんばんは", "おやすみ"]
+
+      // もっと実用的には、オブジェクトと組み合わせる
+      const memos = [
+        {
+          text: "おはよう",
+          createdAt: new Date("2021-10-14T09:00:00"),
+        },
+        {
+          text: "こんにちは",
+          createdAt: new Date("2021-10-14T12:00:00"),
+        },
+        {
+          text: "こんばんは",
+          createdAt: new Date("2021-10-14T21:00:00"),
+        },
+      ];
+
+      // for文でtextを処理する
+      for (let i = 0; i < memos.length; i++) {
+        console.log(memos[i].text, memos[i].createdAt);
+      }
+    </script>
+  </body>
+</html>

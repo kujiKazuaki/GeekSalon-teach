@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>配列を使ったメモアプリ</title>
+  </head>
+  <body>
+    <h2>配列を使ったメモアプリ</h2>
+    <input type="text" id="memo-input" />
+    <button id="add-button">保存</button>
+    <div id="memo-container"></div>
+    <script>
+      const memoInput = document.getElementById("memo-input");
+      const addButton = document.getElementById("add-button");
+      const memoContainer = document.getElementById("memo-container");
+
+      let memos = [];
+
+      addButton.onclick = function () {
+        // ローカルストレージのmemosキーからJSONを読み込む。
+        const memosJson = localStorage.memos;
+        // JSON.parseで配列にして、memosを更新する。
+        memos = JSON.parse(memosJson);
+
+        // inputに入力した内容を取得する
+        const text = memoInput.value;
+        memos.push(text);
+        console.log(memos);
+
+        memoContainer.textContent = "";
+
+        for (let i = 0; i < memos.length; i++) {
+          const div = document.createElement("div");
+          div.textContent = memos[i];
+          memoContainer.append(div);
+        }
+        // ローカルストレージのmemosキーからJSONを読み込む。
+        localStorage.memos = JSON.stringify(memos);
+
+        // 取得した内容をDOMに反映する
+        // const div = document.createElement("div");
+        // div.textContent = text;
+        // memoContainer.append(div);
+      };
+    </script>
+  </body>
+</html>
+
+<!-- === このメッセージは消しても構いません === -->
+
+<!-- GeekSalon WebExpertコースのペアプロで使用するためのテンプレートです。 -->
+<!-- ✅ 👈のメニューから一番下の「👬」のアイコンを選んで -->
+<!--    Live Modeを「Everyone cab edit」に変更した後、 -->
+<!--    「You're live!」の下、「Stop Session」の上、にあるリンクをShareしましょう -->
+<!-- ✅ CodeSandBoxはVS Codeとほぼ同じ様に扱えます。 -->
+<!-- ✅ 👉にある画面が実行画面です。 -->
+<!-- ✅ 👉の👇にある「Console」が実行時のConsoleになります。 -->
+<!--    たまに挙動がおかしい時があるので気をつけましょう。 -->
+
+<!-- =============================== -->

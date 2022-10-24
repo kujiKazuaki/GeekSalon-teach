@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>配列を使ったメモアプリ</title>
+  </head>
+  <body>
+    <h2>配列を使ったメモアプリ</h2>
+    <input type="text" id="memo-input" />
+    <button id="add-button">保存</button>
+    <div id="memo-container"></div>
+    <script>
+      const memoInput = document.getElementById("memo-input");
+      const addButton = document.getElementById("add-button");
+      const memoContainer = document.getElementById("memo-container");
+
+      let memos = [];
+      addButton.onclick = function () {
+        // inputに入力した内容を取得する
+        const text = memoInput.value;
+        memos.push(text);
+
+        // 取得した内容をDOMに反映する
+        // const div = document.createElement("div");
+        // div.textContent = text;
+        // memoContainer.append(div);
+
+        let newMemos = [];
+
+        for (let i = 0; i <= memos.length; i++) {
+          // newMemos.push(memos[i]);
+          newMemos.push(memos[i]);
+        }
+        for (let j = 0; j <= newMemos.length; j++) {
+          // memoContainer.textContent = newMemos;
+          const div = document.createElement("div");
+
+          div.textContent = memos[i];
+          memoContainer.append(div);
+        }
+      };
+    </script>
+  </body>
+</html>

@@ -6,13 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <style>
-      .all_Container {
+      /* .all_Container {
         text-align: center;
-      }
+      } */
       .themeLink {
         margin: 0 auto;
         list-style: none;
-        /* padding-left: 50px; */
+        padding-left: 50px;
       }
       .sectionContainer {
         /* border: 2px solid red; */
@@ -25,19 +25,20 @@
   <body>
     <div class="all_Container">
       <section class="tableContents">
-        <h1>テーマ：JavaScriptによく登場するデータ型</h1>
+        <h1>テーマ：Git</h1>
         <h1>目次</h1>
         <ul class="themeLink">
           <li>１.Gitとは</li>
           <li>２.実際に使ってみる</li>
-          <li>３.</li>
+          <li>３.Git Graph</li>
+          <li>４.ブランチ</li>
         </ul>
       </section>
 
       <section class="sectionContainer">
         <h1>１.Gitとは</h1>
         <div class="Git_Container">
-          <p>概要：ソースコードを管理するためのツール。共同開発の際に使う</p>
+          <p>概要：ソースコードを管理するためのツール。</p>
           <p>ソースコード：html/css/js</p>
           <p>ターミナルの上で操作する</p>
           <h3>できること</h3>
@@ -55,13 +56,42 @@
           <p>意味：リポジトリを新規に作成するときに使用するコマンド</p>
           <p>リポジトリ：システムの情報を管理する貯蔵庫。</p>
 
-          <h3>git add .</h3>
-          <p>意味：共有するファイルを選択するコマンド</p>
+          <h3>$ git add「ファイル名」</h3>
+          <p>意味：保存するファイルを選択するコマンド</p>
           <p>「.」は「現在のディレクトリ」を表す</p>
 
-          <h3>git commit "コミットメッセージ"</h3>
-          <p>意味：git addされた範囲を保存する</p>
+          <h3>$ git commit -m "コミットメッセージ"</h3>
+          <p>意味：git addされた範囲をコミット(保存)する</p>
+          <p>
+            コミットメッセージでは共同開発の際にコミットした内容を書くと他メンバーに伝わりやすい
+          </p>
         </div>
+      </section>
+
+      <section class="sectionContainer">
+        <h1>Git Graph</h1>
+        <div>
+          <p>概要：vscode上でgitの履歴を見ることができる拡張機能</p>
+          <p>git add と git commitで更新される</p>
+        </div>
+      </section>
+
+      <section class="sectionContainer">
+        <h1>ブランチ</h1>
+        <p>概要：セーブデータを複数個作ることができるもの</p>
+        <h3>書き方</h3>
+        <p>$ git branch "ブランチ名"</p>
+        <p>※ブランチを作っただけで移動していない</p>
+        <p>$ git checkout "ブランチ名"</p>
+        <p>ブランチに移動することができる</p>
+
+        <h2>ブランチの内容を1つにする</h2>
+        <p>別々のブランチで書いた内容を1つにしたい</p>
+        <h3>書き方</h3>
+        <p>$ git checkout "ブランチ名"</p>
+        <p>概要：別ブランチに移動するコマンド</p>
+        <p>$ git merge "取り込みたいブランチ名"</p>
+        <p>概要：「取り込みたいブランチ名」の内容をマージするコマンド</p>
       </section>
     </div>
   </body>

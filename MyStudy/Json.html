@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>データ形式の一種</p>
+    <p>CSV形式と一緒で、そういう形式のものにあたる。</p>
+    <p>システム間のデータのやり取りの際に使われる</p>
+    <p>jsonはデータを配列とオブジェクト形式で格納する特徴がある</p>
+    <p></p>
+
+    <section>
+      <div id="display"></div>
+      <div id="pricePC"></div>
+      <div id="sale"></div>
+      <div id="parts"></div>
+    </section>
+    <script>
+      const item = {
+        name: "パソコン",
+        price: 100000,
+        sale: true,
+        parts: ["CPU", "メモリ", "HDD"],
+      };
+      const display = document.getElementById("display");
+      display.textContent = "商品名は" + item["name"];
+      document.getElementById("pricePC").textContent =
+        "値段は" + item["price"] + "円です";
+      if (item["sale"]) {
+        document.getElementById("sale").textContent =
+          item.name + "はセール中です";
+      }
+      let texts = "";
+      for (let i = 0; item.parts.length; i++) {
+        // texts += item.parts[i];
+      }
+      //   document.getElementById("parts").textContent =
+      //     "パソコンのパーツは" + texts + "です。";
+      console.log(texts);
+    </script>
+  </body>
+</html>

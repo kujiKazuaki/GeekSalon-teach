@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #app {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <section class="partOne__Area">
+        <h1>Part1:カウンターアプリ</h1>
+        <div>
+          <p>🔥{{ partOne.count }}🔥</p>
+        </div>
+        <button v-on:click="partOneCountupBtn">+1</button>
+      </section>
+
+      <section class="computed__Area">
+        <h1>Part2:computex</h1>
+
+        <div>
+          <button @click="buyAppleBtn">リンゴ</button>
+          <p>リンゴ：{{ partTwo.apple }} 個</p>
+          <button @click="buyOrangeBtn">オレンジ</button>
+          <p>オレンジ：{{ partTwo.orange }} 個</p>
+        </div>
+        <button v-on:click="computedBtn">合計算出</button>
+        <p>合計(methods)：{{ partTwo.results }}個</p>
+        <div>合計(computed)：{{ computedResult }}個</div>
+      </section>
+
+      <section class="counterApp__Area">
+        <h1>Part3:3の倍数(methods & computed)</h1>
+        <div>
+          <h3 style="color: red">methods</h3>
+          <button @click="partThreeCounterApp">+1</button>
+          <p>{{ partThree.methodsCount }}</p>
+        </div>
+        <div>
+          <h3 style="color: red">computed</h3>
+          <button @click="computedBtn">+1</button>
+          <p>{{ partThreeComputed }}</p>
+        </div>
+
+        <h2>来そうな質問</h2>
+        <h4>Q.thisを変数に置き換えられない理由</h4>
+        <h4>A.this自体が変数だから</h4>
+        <h4>Q.methodsとcomputedの使用目的の違い</h4>
+        <h4>
+          methods:オブジェクトを操作するための命令を指す。プロパティなので引数なし
+        </h4>
+        <h4>computed:オブジェクトの状態を表す。メソッドなので引数可能</h4>
+      </section>
+
+      <section class="VueATM__Area">
+        <h1>Part4: ATM</h1>
+        <section>
+          <h2>入力画面</h2>
+          <input type="number" v-model="nyuryokugaku" />
+          <div>入力額: {{ nyuryokugaku }} 円</div>
+          <div>
+            <button v-on:click="nyukin" v-bind:disabled="!validateNyuryokugaku">
+              入金
+            </button>
+            <button
+              v-on:click="shukin"
+              v-bind:disabled="!(validateNyuryokugaku && hasZandaka)"
+            >
+              出金
+            </button>
+          </div>
+        </section>
+        <section>
+          <h2>口座残高</h2>
+          <div>残高: {{ zandaka }}円</div>
+        </section>
+        <section>
+          <h2>取引記録</h2>
+          <div v-if="logs.length > 0">
+            <div v-for="(log, index) in logs" v-bind:key="index">
+              <div>日付: {{ log.date }}</div>
+              <div>操作: {{ log.type }}</div>
+              <div>金額: {{ log.money }}</div>
+            </div>
+          </div>
+          <div v-else>取引記録はありません。</div>
+        </section>
+      </section>
+    </div>
+
+    <script src="https://unpkg.com/vue@3.2.36"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeSandboxを作ってみよう！</title>
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="tow-columns">
+    <div class="file-navigation">
+      <div class="file-navigation__buttons">
+        <h1 class="file-navigation__title-text">Files</h1>
+        <input
+          type="text"
+          class="file-navigation__new-file-input"
+          id="add-new-file-input"
+        />
+        <button
+          class="file-navigation__new-file-button"
+          id="add-new-file-button"
+        >
+          Make a new file
+        </button>
+      </div>
+      <nav>
+        <ul class="file-navigation__list" id="file-navigation-list">
+          <li class="file-navigation__file" data-selected="true">index.html</li>
+          <li class="file-navigation__file">package.html</li>
+          <li class="file-navigation__file">sandbox.config.json</li>
+          <li class="file-navigation__file">style.css</li>
+        </ul>
+      </nav>
+    </div>
+    <main class="file-content">
+      <h1 class="file-content__now-editing-file" id="editing-file-title"></h1>
+      <textarea
+        class="file-content__input-field"
+        id="editing-file-content"
+      ></textarea>
+      <button id="save-button">保存する</button>
+    </main>
+    <script>
+      let files = JSON.parse(localStorage["files"] || "[]");
+      console.log(files.length);
+      if (files.length === 0) {
+        files = [
+          {
+            title: "index.html",
+            content: "index.htmlの内容です",
+          },
+          {
+            title: "package.json",
+            content: "package.jsonの内容です",
+          },
+          {
+            title: "sandbox.config.json",
+            content: "sandbox.config.jsonの内容です",
+          },
+          {
+            title: "style.css",
+            content: "style.cssの内容です",
+          },
+        ];
+      }
+
+      const fileNavigationList = document.getElementById(
+        "file-navigation-list"
+      );
+      const editingFileTitle = document.getElementById("editing-file-title");
+      const editingFileContent = document.getElementById(
+        "editing-file-content"
+      );
+      const addNewFileButton = document.getElementById("add-new-file-button");
+      const addNewFileInput = document.getElementById("add-new-file-input");
+      const saveButton = document.getElementById("save-button");
+
+      addNewFileButton.onclick = function () {
+        // 新しいファイルを作成する処理
+      };
+
+      const loadFiles = function (index) {
+        // filesを読み込む処理
+
+        editingFileTitle.textContent = files[index].title;
+        editingFileContent.value = files[index].content;
+      };
+
+      for (let i = 0; i < files.length; i++) {
+        fileNavigationList.children[i].onclick = function () {
+          loadFiles(i);
+        };
+      }
+      saveButton.onclick = function () {
+        const title = editingFileTitle.textContent;
+
+        for (let i = 0; i < files.length; i++) {
+          if (files[i].title === title) {
+            files[i].content = editingFileContent.value;
+            localStorage["files"] = JSON.stringify(files);
+            break;
+          }
+        }
+      };
+      loadFiles(0);
+      console.log(fileNavigationList);
+    </script>
+  </body>
+</html>

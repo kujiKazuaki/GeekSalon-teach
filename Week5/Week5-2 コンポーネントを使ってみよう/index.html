@@ -7,12 +7,10 @@
     <title>Document</title>
   </head>
   <body>
-    <div id="test"></div>
-    <script>
-      const test = document.getElementById("test");
-
-      console.log(test);
-      test.textContent = "sadfdsaf";
-    </script>
+    <div id="app">
+      <span @mousemove="fire" @mouseleave="bomb">{{ icon }}</span>
+    </div>
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="main.js"></script>
   </body>
 </html>

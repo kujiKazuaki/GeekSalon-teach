@@ -1,0 +1,98 @@
+:root {
+  --padding: 0.5rem;
+  --bg-color: #f6f8fa;
+  --text-color: rgb(88, 96, 105);
+  --text-sub-color: rgb(105, 114, 124);
+  --border-color: rgb(225, 228, 232);
+}
+
+.tow-columns {
+  display: flex;
+  margin: 0;
+  padding: 0;
+}
+
+.file-navigation {
+  resize: horizontal;
+  min-width: 300px;
+  min-height: 100vh;
+  background-color: var(--bg-color);
+  overflow-x: scroll;
+  display: flex;
+  flex-direction: column;
+}
+
+.file-navigation__buttons {
+  padding: var(--padding);
+  display: flex;
+  align-items: center;
+  gap: calc(var(--padding) * 4);
+}
+
+.file-navigation__title-text {
+  display: inline-block;
+  font-size: 1.5rem;
+}
+
+.file-navigation__new-file-input {
+  border: solid 1px var(--border-color);
+  background-color: white;
+  padding: var(--padding);
+}
+
+.file-navigation__new-file-button {
+  padding: calc(var(--padding) * 0.5) var(--padding);
+  border: solid 1px var(--border-color);
+  border-radius: 5px;
+  background-color: #6d6d6d;
+  color: white;
+  white-space: nowrap;
+}
+
+.file-navigation__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: calc(var(--padding) * 4);
+  padding-top: calc(var(--padding) * 4);
+  border-top: solid 1px var(--border-color);
+  border-bottom: solid 1px var(--border-color);
+}
+
+.file-navigation__file {
+  display: inline-block;
+  padding-left: calc(var(--padding) * 4);
+  padding-top: var(--padding);
+  padding-bottom: var(--padding);
+  color: var(--text-sub-color);
+}
+
+.file-navigation__file[data-selected="true"] {
+  color: var(--text-color);
+  font-weight: bold;
+  background-color: #ecf0f4;
+}
+
+.file-content {
+  flex: 1 1 0;
+  background-color: var(--bg-color);
+  resize: horizontal;
+  padding: calc(var(--padding) * 4);
+  border: var(--border-color) solid 1px;
+}
+
+.file-content__now-editing-file {
+  font-weight: bold;
+}
+
+.file-content__input-field {
+  width: 100%;
+  height: 90%;
+  resize: none;
+  background-color: white;
+  font-size: 1.25rem;
+  line-height: 2;
+  margin-top: var(--padding);
+  padding: calc(var(--padding) * 4);
+  overflow: scroll;
+}

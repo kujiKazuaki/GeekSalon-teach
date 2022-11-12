@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <p>ボタンを押すとオブジェクトとストレージにデータが保存され、表示される</p>
+    <button id="btnId">test</button>
+    <div id="display"></div>
+    <script>
+      const btnId = document.getElementById("btnId");
+      const display = document.getElementById("display");
+      const geekSalon = { id: 1, name: "web", age: null };
+
+      const replacer = (key, value) => {
+        if (value === null) {
+          return undefined;
+        }
+        return value;
+      };
+      localStorage.setItem("Geek", JSON.stringify(geekSalon));
+
+      const func = function () {
+        display.textContent = localStorage.getItem("Geek");
+      };
+      func();
+
+      console.log(JSON.stringify(geekSalon, replacer, 2));
+
+      btnId.onclick = function () {
+        geekSalon.test = "test";
+        localStorage.setItem("Geek", JSON.stringify(geekSalon));
+        func();
+      };
+
+      const obj = { id: 0, name: "test" };
+      console.log(obj);
+      obj.test = "rarirurero";
+      console.log(obj);
+    </script>
+  </body>
+</html>

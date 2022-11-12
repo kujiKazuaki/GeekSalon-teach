@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeSandboxを作ってみよう！</title>
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="tow-columns">
+    <div class="file-navigation">
+      <div class="file-navigation__buttons">
+        <h1 class="file-navigation__title-text">Files</h1>
+        <input
+          type="text"
+          class="file-navigation__new-file-input"
+          id="add-new-file-input"
+        />
+        <button
+          class="file-navigation__new-file-button"
+          id="add-new-file-button"
+        >
+          Make a new file
+        </button>
+      </div>
+      <nav>
+        <ul class="file-navigation__list" id="file-navigation-list"></ul>
+      </nav>
+    </div>
+    <main class="file-content">
+      <h1 class="file-content__now-editing-file" id="editing-file-title"></h1>
+      <textarea class="file-content__input-field" id="editing-file-content">
+      </textarea>
+    </main>
+    <script>
+      const files = [
+        {
+          title: "index.html",
+          content: "index.htmlの内容です",
+        },
+        {
+          title: "package.json",
+          content: "package.jsonの内容です",
+        },
+        {
+          title: "sandbox.config.json",
+          content: "sandbox.config.jsonの内容です",
+        },
+        {
+          title: "style.css",
+          content: "style.cssの内容です",
+        },
+      ];
+
+      const fileNavigationList = document.getElementById(
+        "file-navigation-list"
+      );
+      const editingFileTitle = document.getElementById("editing-file-title");
+      const editingFileContent = document.getElementById(
+        "editing-file-content"
+      );
+      const addNewFileButton = document.getElementById("add-new-file-button");
+      const addNewFileInput = document.getElementById("add-new-file-input");
+
+      addNewFileButton.onclick = function () {
+        files.push({
+          title: addNewFileInput.value,
+          content: "",
+        });
+        addNewFileInput.value = "";
+        loadFiles();
+      };
+
+      const loadFiles = function () {
+        // filesを読み込む
+        fileNavigationList.textContent = "";
+        for (let i = 0; i < files.length; i++) {
+          const li = document.createElement("li");
+          li.classList.add("file-navigation__file");
+          li.textContent = files[i].title;
+          li.onclick = function () {
+            // クリックされる度にコンテンツを入れ替える
+            editingFileTitle.textContent = files[i].title;
+            editingFileContent.value = files[i].content;
+            // クリックされる度に背景を入れ替える
+            setIsSelected(li);
+            editingFileContent.onchange = function (e) {
+              // 変更があったら、コンテンツを保存する
+              files[i].content = e.target.value;
+              editingFileContent.value = files[i].content;
+            };
+          };
+          fileNavigationList.append(li);
+
+          if (i === 0) {
+            // 0番目の項目は、最初から開いている状態にセットする
+            editingFileTitle.textContent = files[0].title;
+            editingFileContent.value = files[0].content;
+            li.dataset.selected = true;
+          }
+        }
+      };
+
+      const setIsSelected = function (li) {
+        const allLiElements = document.getElementsByTagName("li");
+        for (let i = 0; i < allLiElements.length; i++) {
+          if (!!allLiElements[i].dataset.selected === true) {
+            allLiElements[i].dataset.selected = false;
+          }
+        }
+        li.dataset.selected = true;
+      };
+
+      loadFiles();
+    </script>
+  </body>
+</html>

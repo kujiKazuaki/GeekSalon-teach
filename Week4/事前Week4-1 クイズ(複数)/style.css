@@ -1,0 +1,34 @@
+.all_Container {
+  text-align: center;
+}
+.quizImg {
+  min-width: 20rem;
+  min-height: 20rem;
+  max-width: 20rem;
+  max-height: 20rem;
+}
+.buttonForm {
+  font-size: 1.5em;
+  font-weight: bold;
+  padding: 0.3rem;
+  margin-top: 0.5rem;
+  border-radius: 10%;
+  border: 0.15em solid rgb(223, 154, 154);
+  background-color: rgb(231, 230, 183);
+}
+.buttonForm:hover {
+  cursor: pointer;
+  filter: brightness(105%);
+}
+.buttonForm:active {
+  transform: scale(0.98);
+}
+.feedback {
+  font-weight: bold;
+  margin-top: 0.5rem;
+  border: 2px solid black;
+  min-height: 7em;
+}
+.quizFeedBack {
+  font-size: 1.5em;
+}

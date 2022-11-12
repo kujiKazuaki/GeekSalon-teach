@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CodeSandboxを作ってみよう！</title>
+    <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body class="tow-columns">
+    <div class="file-navigation">
+      <div class="file-navigation__buttons">
+        <h1 class="file-navigation__title-text">Files</h1>
+        <input
+          type="text"
+          class="file-navigation__new-file-input"
+          id="add-new-file-input"
+        />
+        <button
+          class="file-navigation__new-file-button"
+          id="add-new-file-button"
+        >
+          Make a new file
+        </button>
+      </div>
+      <nav>
+        <ul class="file-navigation__list" id="file-navigation-list">
+          <li class="file-navigation__file" data-selected="true">index.html</li>
+          <li class="file-navigation__file">package.json</li>
+          <li class="file-navigation__file">sandbox.config.json</li>
+          <li class="file-navigation__file">style.css</li>
+        </ul>
+      </nav>
+    </div>
+    <main class="file-content">
+      <h1 class="file-content__now-editing-file" id="editing-file-title">
+        index.html
+      </h1>
+      <textarea class="file-content__input-field" id="editing-file-content">
+index.htmlの内容です</textarea
+      >
+    </main>
+    <script>
+      const files = [
+        {
+          title: "index.html",
+          content:
+            "fileNavigationListをconsole.logするとhtmlは取得できるが、それぞれのliを取得することはできない",
+        },
+        {
+          title: "package.json",
+          content: "package.jsonの内容です",
+        },
+        {
+          title: "sandbox.config.json",
+          content: "sandbox.config.jsonの内容です",
+        },
+        {
+          title: "style.css",
+          content: "style.cssの内容です",
+        },
+      ];
+
+      const fileNavigationList = document.getElementById(
+        "file-navigation-list"
+      );
+      const editingFileTitle = document.getElementById("editing-file-title");
+      const editingFileContent = document.getElementById(
+        "editing-file-content"
+      );
+      const addNewFileButton = document.getElementById("add-new-file-button");
+      const addNewFileInput = document.getElementById("add-new-file-input");
+
+      const filesJson = JSON.parse(localStorage["filesJson"] || "[]");
+
+      addNewFileButton.onclick = function () {
+        files.push({
+          title: addNewFileInput.value,
+          content: addNewFileInput.value + "の内容です。",
+        });
+
+        //   JSONデータに格納するコード
+        delete filesJson;
+        filesJson.push(files);
+        localStorage["filesJson"] = JSON.stringify(filesJson);
+
+        addNewFileInput.value = "";
+        loadFiles();
+      };
+
+      const loadFiles = function () {
+        // filesを読み込む処理
+        fileNavigationList.textContent = "";
+        for (let i = 0; i < files.length; i++) {
+          const liName = document.createElement("li");
+          liName.className = "file-navigation__file";
+          liName.textContent = files[i].title;
+          liName.onclick = function () {
+            editingFileTitle.textContent = files[i].title;
+            editingFileContent.textContent = files[i].content;
+          };
+          fileNavigationList.append(liName);
+        }
+      };
+      loadFiles();
+    </script>
+  </body>
+</html>

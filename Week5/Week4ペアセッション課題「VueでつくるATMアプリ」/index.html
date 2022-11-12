@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <h1>入力画面</h1>
+      <section class="inputArea">
+        <input type="number" v-model="inputMoney" />
+        <div>入力額：{{ inputMoney }}円</div>
+        <button @click="addMoneyBtn">入金</button>
+        <button @click="outMoneyBtn" :disabled="finalJudge">出金</button>
+      </section>
+
+      <section class="displayArea">
+        <h1>口座残高</h1>
+        <div>残高：{{ displayMoney }}円</div>
+      </section>
+
+      <section class="tradingAccountArea">
+        <h1>取引記録</h1>
+        <div v-for="(item, index) in items" :key="index">
+          <div>日付：{{ item.date }}</div>
+          <div>操作：{{ item.handle }}</div>
+          <div>金額：{{ item.money }}</div>
+        </div>
+      </section>
+    </div>
+    <script src="https://unpkg.com/vue@3.2.20"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

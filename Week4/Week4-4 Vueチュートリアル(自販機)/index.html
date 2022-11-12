@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <section>
+        <h3>1. 飲み物の名前と値段を表示する</h3>
+        <div>
+          <div>{{ drink.name }}（{{ drink.stock }}）</div>
+          <button v-on:click="buyTea" :disabled="drink.buyTeaDisabled">
+            {{ drink.price }}円
+          </button>
+          <div>{{ kattaKazu }}本買いました</div>
+          <div v-if="drink.stock > 0">在庫あり</div>
+          <div v-else>売り切れ</div>
+          <div class="buyContents">
+            <div
+              v-for="(item, index) in items"
+              :key="index"
+              class="itemContent"
+            >
+              {{ item.text }}
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script src="https://unpkg.com/vue@3.2.20"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

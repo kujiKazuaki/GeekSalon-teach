@@ -4,7 +4,72 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>GitHub</title>
+    <style>
+      /* .all_Container {
+        text-align: center;
+      } */
+      .themeLink {
+        margin: 0 auto;
+        list-style: none;
+        padding-left: 50px;
+      }
+      .sectionContainer {
+        /* border: 2px solid red; */
+        /* width: 800px; */
+        margin: 0 auto;
+        margin-top: 40px;
+      }
+      .stylered {
+        color: red;
+      }
+      .stylebold {
+        font-weight: bold;
+      }
+    </style>
   </head>
-  <body></body>
+  <body>
+    <div class="all_Container">
+      <section class="tableContents">
+        <h1>テーマ：GitHub</h1>
+        <h1>目次</h1>
+        <ul class="themeLink">
+          <li>１.GitHubの概要</li>
+          <li>２.GitHubを使う理由</li>
+          <li>３.使い方を学ぼう</li>
+          <li>４.</li>
+        </ul>
+      </section>
+
+      <section class="tableContents">
+        <h1>１.GitHubの概要</h1>
+        <h3>概要：Gitを利用したWebサービス</h3>
+        <a href="https://github.com/" target="_blank">GitHub</a>
+      </section>
+
+      <section class="tableContents">
+        <h1>２.GitHubを使う理由</h1>
+        <h3 class="stylered">共同開発に便利な機能が搭載されているから</h3>
+        <div>
+          <h4>例</h4>
+          <p>①リポジトリの作成＆共有</p>
+          <p>②プルリクエスト(ファイルのレビュー)</p>
+        </div>
+      </section>
+
+      <section class="tableContents">
+        <h1>３.使い方を学ぼう</h1>
+        <p class="stylebold">
+          すること：vscodeの内容をgithubにアップロードする
+        </p>
+        <h3>手順</h3>
+        <p>①「New Repository」⇒githubにアップロードする場所を作る</p>
+        <p>
+          ②$ git remote add origin 「URL」
+          ⇒どこにアップロードするかを登録する+[git push]を使えるようにする
+        </p>
+        <p>③$ git push origin master ⇒ 登録したURLにデータをアップロードする</p>
+      </section>
+    </div>
+  </body>
 </html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="app">
+      <h1>Vue3</h1>
+      <h2>
+        {{ message + "：" + count + " [" + new Date().toLocaleString() + "]" }}
+      </h2>
+      <div>
+        <button @click="countUp()">＋１</button>
+      </div>
+      <div v-html="display"></div>
+      <div>{{count + "は" + (count % 2 === 0 ? "偶数" : "奇数") + "です"}}</div>
+      <div>
+        {{ list.map((value, key) => key + '：「' + value + '」').join("\n") }}
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

@@ -38,7 +38,7 @@
   <body>
     <h1>僕の趣味は何でしょう？</h1>
     <div class="imgArea">
-      <img src="./img/クイズ画像.jpg" alt="image" id="quizImg" />
+      <img src="./img/quizimg.jpg" alt="image" id="quizImg" />
     </div>
     <button id="oneBtn">スノーボード</button>
     <button id="twoBtn">カラオケ</button>
@@ -58,7 +58,7 @@
 
       //   「スノーボード」ボタンを押したときの処理
       oneBtn.onclick = function () {
-        quizImg.src = "./img/スノーボード.jpg";
+        quizImg.src = "./img/snowBoard.jpg";
         FBText.textContent = "正解!";
         twoBtn.disabled = true;
         threeBtn.disabled = true;
@@ -66,7 +66,7 @@
       };
       //   「カラオケ」ボタンを押したときの処理
       twoBtn.onclick = function () {
-        quizImg.src = "./img/カラオケ.jpg";
+        quizImg.src = "./img/karaoke.jpg";
         FBText.textContent = "はずれ!オンチなんです";
         oneBtn.disabled = true;
         threeBtn.disabled = true;
@@ -74,7 +74,7 @@
       };
       //   「勉強」ボタンを押したときの処理
       threeBtn.onclick = function () {
-        quizImg.src = "./img/勉強.jpg";
+        quizImg.src = "./img/study.jpg";
         FBText.textContent = "はずれ!勉強好きな人いる?";
         oneBtn.disabled = true;
         twoBtn.disabled = true;

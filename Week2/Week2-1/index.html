@@ -6,16 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>自販機</title>
     <style>
+      body {
+        text-align: center;
+        -webkit-user-select: none;
+        user-select: none;
+      }
       #disImg {
-        max-width: 300px;
-        max-height: 400px;
-        min-width: 300px;
-        min-height: 400px;
+        max-width: 200px;
+        max-height: 200px;
+        min-width: 200px;
+        min-height: 200px;
       }
     </style>
   </head>
   <body>
     <h1>自販機</h1>
+    <p>
+      財布が100未満の時にinputでお金を入れると財布がマイナスになるバグがある
+    </p>
     <section>
       <h3>自販機にお金を入れる</h3>
       <input type="number" id="moneyInput" value="0" />
@@ -29,17 +37,21 @@
     </section>
     <section>
       <h3>商品を買う</h3>
-      <button id="buy-button-tea" disabled>お茶(100円)</button>
-      <button id="beerBtn" disabled>お酒(150円)</button><br />
-      <button id="teaImg" disabled>お茶(100円)</button>
-      <button id="beerImg" disabled>お酒(150円)</button>
+      <div>
+        <div>
+          <img src="./images/drinks.webp" alt="image" id="disImg" />
+        </div>
+        <button id="teaImg" disabled>お茶🍵</button>
+        <button id="beerImg" disabled>お酒🍺</button>
+      </div>
+      <div>
+        <button id="buy-button-tea" disabled>お茶(100円)</button>
+        <button id="beerBtn" disabled>お酒(150円)</button>
+      </div>
     </section>
     <section>
       <h3>買った商品</h3>
       <div id="display-items"></div>
-      <div>
-        <img src="./images/drinks.webp" alt="image" id="disImg" />
-      </div>
     </section>
     <script>
       // HTML要素を取得する
@@ -60,10 +72,10 @@
       let jihankiValue = Number(jihankiMoney.textContent);
       let saifuValue = Number(saifu.textContent);
 
-      moneyInputBtn.onclick = function () {
+      // 金を入れると財布が減り、投入金額が増える関数
+      const inputMoneyFnc = () => {
         let moneyInputValue = Number(moneyInput.value);
         if (moneyInputValue > 0) {
-          console.log("asdiufas");
           saifuValue -= moneyInputValue;
           saifu.textContent = saifuValue;
           jihankiValue += moneyInputValue;
@@ -74,7 +86,18 @@
         jihankiFunc();
       };
 
-      addBtn.onclick = function () {
+      const moneyMethod = () => {
+        moneyInput.addEventListener("keydown", (event) => {
+          if (event.key === "Enter") {
+            inputMoneyFnc();
+          }
+        });
+        moneyInputBtn.addEventListener("click", () => {
+          inputMoneyFnc();
+        });
+      };
+      moneyMethod();
+      addBtn.onclick = () => {
         // 「const」に追加で変数代入するとエラーが起こる
         if (saifu.textContent > 0) {
           saifuValue -= 100;
@@ -86,7 +109,7 @@
       };
 
       // buyButtonTea を押した時の処理
-      buyButtonTea.onclick = function () {
+      buyButtonTea.onclick = () => {
         if (jihankiValue >= 100) {
           displayItems.textContent += "🍵";
           jihankiValue -= 100;
@@ -95,23 +118,22 @@
         jihankiFunc();
       };
       //   画像お茶ボタンを押したときの処理
-      teaImg.onclick = function () {
+      teaImg.onclick = () => {
         if (jihankiValue >= 100) {
           disImg.src = "./images/tea.jpeg";
         }
         jihankiFunc();
       };
       //   画像ビールボタンを押したときの処理
-      beerImg.onclick = function () {
+      beerImg.onclick = () => {
         if (jihankiValue >= 150) {
           disImg.src = "./images/beer.jpeg";
         }
         jihankiFunc();
       };
-      console.log(disImg);
 
       //   ビールボタンの処理
-      beerBtn.onclick = function () {
+      beerBtn.onclick = () => {
         if (jihankiValue >= 150) {
           displayItems.textContent += "🍺";
           jihankiValue -= 150;
@@ -121,7 +143,7 @@
       };
 
       //   おつりボタンの処理
-      changeBtn.onclick = function () {
+      changeBtn.onclick = () => {
         saifuValue += jihankiValue;
         saifu.textContent = saifuValue;
         jihankiValue = 0;
@@ -129,7 +151,8 @@
         jihankiFunc();
       };
 
-      const jihankiFunc = function () {
+      // disabledを変換する関数
+      const jihankiFunc = () => {
         if (jihankiValue >= 100) {
           buyButtonTea.disabled = false;
           teaImg.disabled = false;
